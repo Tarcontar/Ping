@@ -7,7 +7,7 @@ Ping::Ping(int trigger, int echo, int max_dist) : m_trigger(trigger), m_echo(ech
 	pinMode(m_echo, INPUT);
 }
 
-unsigned long Ping::ping()
+unsigned long Ping::ping_us()
 {
 	digitalWrite(m_trigger, LOW);
 	delayMicroseconds(2);
@@ -21,17 +21,17 @@ unsigned long Ping::ping()
 	return result;
 }
 
-unsigned long Ping::ping_mm(int temp, int it)
+unsigned int Ping::ping_mm(int temp, int it)
 {
 	unsigned long uS[it], last;
 	int j, i = 0;
 	unsigned long t;
-	float c = (331.5 + (temp * 0.6)) / 1000.0; //mm/us
+	float c = (331.5 + (temp * 0.6)) / 500.0; //mm/us
 	uS[0] = 0;
 
 	while (i < it) 
 	{
-		last = ping();  
+		last = ping_us();  
 
 		if (last != 0) 
 		{         
@@ -50,5 +50,5 @@ unsigned long Ping::ping_mm(int temp, int it)
 			it--;               
 		delay(10);
 	}
-	return (uS[it >> 1] / 2.0 * c); 
+	return uS[it >> 1] / c; 
 }
