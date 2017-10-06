@@ -1,4 +1,4 @@
-#include "Ping.h"
+#include "Ping.hpp"
 #include "Arduino.h"
 
 Ping::Ping(int trigger, int echo, int max_dist) : m_trigger(trigger), m_echo(echo), m_max_dist(max_dist)
