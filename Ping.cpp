@@ -1,4 +1,4 @@
-#include "Ping.h"
+#include "Ping.hpp"
 
 Ping::Ping(int trigger, int echo, int max_dist)
 {
