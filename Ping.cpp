@@ -1,5 +1,10 @@
 #include "Ping.hpp"
 
+Ping::Ping()
+{
+	
+}
+
 Ping::Ping(int trigger, int echo, int max_dist)
 {
 	m_triggerBit = digitalPinToBitMask(trigger); // Get the port register bitmask for the trigger pin.

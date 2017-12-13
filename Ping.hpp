@@ -11,6 +11,7 @@
 class Ping
 {
 public: 
+	Ping();
 	Ping(int trigger, int echo, int max_dist = MAX_SENSOR_DISTANCE);
 	
 	unsigned int ping_mm(int temp = 22,  int it = 15, int max_dist = 0);
