@@ -16,12 +16,14 @@ public:
 	
 	unsigned int ping_mm(int temp = 22,  int it = 15, int max_dist = 0);
 	unsigned long ping_us(int max_dist = 0);
+	bool connected();
 	
 private:
 	bool trigger();
 	void setMaxDistance(unsigned int max_cm_distance);
 	
 private:	
+	int m_echo_pin;
 	unsigned int m_triggerBit;
 	unsigned int m_echoBit;
 	volatile uint8_t *m_triggerOutput;

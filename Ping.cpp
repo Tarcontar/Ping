@@ -68,6 +68,11 @@ unsigned long Ping::ping_us(int max_dist)
 	return (micros() - (m_max_time - m_maxEchoTime) - PING_OVERHEAD);
 }
 
+bool Ping::connected()
+{
+	return analogRead(m_echo_pin) < 20;
+}
+
 bool Ping::trigger()
 {
 	*m_triggerOutput &= ~m_triggerBit;   //low
