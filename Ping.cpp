@@ -5,8 +5,11 @@ Ping::Ping()
 	
 }
 
-Ping::Ping(int trigger, int echo, int max_dist)
+Ping::Ping(int trigger, int echo, int max_dist) : m_echo_pin(echo)
 {
+	pinMode(trigger, OUTPUT);
+	digitalWrite(trigger, LOW);
+	pinMode(echo, INPUT);
 	m_triggerBit = digitalPinToBitMask(trigger); // Get the port register bitmask for the trigger pin.
 	m_echoBit = digitalPinToBitMask(echo);       // Get the port register bitmask for the echo pin.
 
@@ -68,9 +71,15 @@ unsigned long Ping::ping_us(int max_dist)
 	return (micros() - (m_max_time - m_maxEchoTime) - PING_OVERHEAD);
 }
 
-bool Ping::connected()
+int Ping::connected()
 {
-	return analogRead(m_echo_pin) < 20;
+	if (isAnalogPin(m_echo_pin))
+	{
+		if (analogRead(m_echo_pin) < 20)
+			return 1;
+		return 0;
+	}
+	return -1;
 }
 
 bool Ping::trigger()

@@ -16,7 +16,11 @@ public:
 	
 	unsigned int ping_mm(int temp = 22,  int it = 15, int max_dist = 0);
 	unsigned long ping_us(int max_dist = 0);
-	bool connected();
+	
+	//-1 not a analog pin
+	// 0  not connected
+	// 1 connected
+	int connected();
 	
 private:
 	bool trigger();
